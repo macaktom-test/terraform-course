@@ -1,6 +1,6 @@
-#Small project to play around with terraform
+Small project to play around with terraform
 
-##Tasks:
+Tasks:
 1. Create vpc
 2. Create Internet Gateway
 3. Create Custom Route Table
