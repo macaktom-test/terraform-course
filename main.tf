@@ -13,18 +13,7 @@ terraform {
 
 provider "aws" {
   region                   = var.region
-  shared_credentials_files = ["./creds"]
-}
-
-#Resource configuration
-resource "aws_instance" "myec2" {
-  ami           = var.instance_ami
-  instance_type = var.instance_type
-}
-
-resource "aws_instance" "demo" {
-  ami           = var.instance_ami
-  instance_type = var.instance_type
+  shared_credentials_files = ["creds"]
 }
 
 
