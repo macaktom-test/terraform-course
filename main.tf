@@ -53,11 +53,11 @@ resource "aws_route_table" "prod-route-table" {
 
 resource "aws_subnet" "subnet-1" {
   vpc_id            = aws_vpc.prod-vpc.id
-  cidr_block        = "10.0.1.0/24"
+  cidr_block        = var.subnet_prefix.cidr_block
   availability_zone = var.availability_zone
 
   tags = {
-    Name = "prod-subnet"
+    Name = var.subnet_prefix.name
   }
 }
 
@@ -118,7 +118,8 @@ resource "aws_eip" "web-server-eip" {
   network_interface         = aws_network_interface.web-server-nic.id
   associate_with_private_ip = "10.0.1.50"
   depends_on = [
-    aws_internet_gateway.gw
+    aws_internet_gateway.gw,
+    aws_instance.web-server-inst
   ]
 }
 
@@ -141,4 +142,9 @@ resource "aws_instance" "web-server-inst" {
   tags = {
     Name = "web-server"
   }
+}
+
+output "web-server-inst-public-ip" {
+  description = "Public IP of webserver"
+  value       = aws_eip.web-server-eip.public_ip
 }

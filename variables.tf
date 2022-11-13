@@ -1,7 +1,6 @@
 variable "instance_ami" {
   type        = string
-  description = "Ubuntu 22.04 Free Tier AMI"
-  default     = "ami-08c40ec9ead489470"
+  description = "AMI of provisioned instance"
 }
 variable "region" {
   type        = string
@@ -19,4 +18,9 @@ variable "availability_zone" {
   type        = string
   description = "Availability zone"
   default     = "us-east-1a"
+}
+
+variable "subnet_prefix" {
+  type        = map
+  description = "CIDR block for prod subnet"
 }
